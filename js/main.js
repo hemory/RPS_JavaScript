@@ -2,36 +2,71 @@ let userScore = 0;
 let computerScore = 0;
 let userScore_span = document.getElementById('user-score');
 let computerScore_span = document.getElementById('computer-score');
-const scoreBoard_div = document.querySelector('.score-board');
-const result_div = document.querySelector('.result');
-const rock_div = document.getElementById('rock');
-const paper_div = document.getElementById('paper');
-const scissors_div = document.getElementById('scissors');
-const computerChoice = Math.floor(Math.random() * 3);
+let scoreBoard_div = document.querySelector('.score-board');
+let result_p = document.querySelector('.result > p');
+let rock_div = document.getElementById('rock');
+let paper_div = document.getElementById('paper');
+let scissors_div = document.getElementById('scissors');
 
 function getComputerChoice() {
-    let choices = ['r', 'p','s'];
+    let choices = ['Rock', 'Paper','Scissors'];
    let ranNum =  Math.floor(Math.random() * 3);
    return choices[ranNum];
 }
 
+function win(userChoice,computerChoice) {
+    userScore++;
+    userScore_span.innerHTML = userScore.toString();
+    result_p.innerHTML = userChoice + " beats " + computerChoice + ". You win!"
+}
+
+function lose(userChoice, computerChoice) {
+    computerScore++;
+    computerScore_span.innerHTML = computerScore.toString();
+    result_p.innerHTML = computerChoice + " beats " + userChoice + ". You win!"
+
+}
+
+function tie(userChoice, computerChoice) {
+    result_p.innerHTML = computerChoice + " is the same as " + userChoice + ". It's a tie!"
+
+}
+
+
 function game(userChoice){
-    console.log("poop" + userChoice)
+    const computerChoice = getComputerChoice();
+    switch (userChoice + computerChoice) {
+        case 'RockScissors':
+        case 'PaperRock':
+        case'ScissorsPaper':
+            win(userChoice, computerChoice);
+            break;
+        case 'RockPaper':
+        case 'PaperScissors':
+        case'ScissorsRock':
+            lose(userChoice, computerChoice);
+            break;
+        case 'RockRock':
+        case 'PaperPaper':
+        case'ScissorsScissors':
+            tie(userChoice, computerChoice);
+            break;
+    }
 }
 
 function main() {
     $(document).ready(function () {
 
         $(rock_div).click(function () {
-            game('rock');
+            game('Rock');
         })
 
         $(paper_div).click(function () {
-            game('paper');
+            game('Paper');
         })
 
         $(scissors_div).click(function () {
-            game('scissors');
+            game('Scissors');
         })
 
 
