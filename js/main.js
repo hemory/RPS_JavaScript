@@ -17,18 +17,18 @@ function getComputerChoice() {
 function win(userChoice,computerChoice) {
     userScore++;
     userScore_span.innerHTML = userScore.toString();
-    result_p.innerHTML = userChoice + " beats " + computerChoice + ". You win!"
+    result_p.innerHTML = "<sup class='badge-two'>user</sup> " + userChoice + " beats " +  "<sup class='comp-badge-two'>comp</sup> " + computerChoice + ". You win!"
 }
 
 function lose(userChoice, computerChoice) {
     computerScore++;
     computerScore_span.innerHTML = computerScore.toString();
-    result_p.innerHTML = computerChoice + " beats " + userChoice + ". You win!"
+    result_p.innerHTML = "<sup class='comp-badge-two'>comp</sup> " + computerChoice + " beats " + "<sup class='badge-two'>user</sup> " + userChoice + ". You lose!"
 
 }
 
 function tie(userChoice, computerChoice) {
-    result_p.innerHTML = computerChoice + " is the same as " + userChoice + ". It's a tie!"
+    result_p.innerHTML = "<sup class='comp-badge-two'>comp</sup> " + computerChoice + " is the same as " + "<sup class='badge-two'>user</sup> " + userChoice + ". It's a tie!"
 
 }
 
